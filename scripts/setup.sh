@@ -14,4 +14,4 @@ useradd webdeploy &&\
 
 echo "Installing nginx"
 
-which nginx || apt install nginx
+which nginx || apt install -y nginx
