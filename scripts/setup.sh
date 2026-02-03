@@ -17,10 +17,8 @@ echo "Creating webdeploy user and making dirs"
 useradd webdeploy &&\
     usermod -aG www-data webdeploy &&\
     mkdir -p /var/www/devops-site &&\
-    mkdir -p /var/www/backup &&\
-    chown webdeploy:www-data /var/www/devops-site &&\
-    chown webdeploy:www-data /var/www/backup
-
+    chown webdeploy:www-data /var/www/devops-site
+    
 echo "Installing nginx"
 
 which nginx || apt install -y nginx && rm /etc/nginx/sites-enabled/default
