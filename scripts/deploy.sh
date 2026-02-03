@@ -6,8 +6,9 @@
 # date: 2026-02-02
 ###################################### 
 set -o errexit
+set -o pipefail
 
-LOG_FILE_PATH="./logs/deploy.log"
+LOG_FILE_PATH="../logs/deploy.log"
 
 . ./lib.sh
 
