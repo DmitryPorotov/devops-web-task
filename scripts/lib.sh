@@ -8,7 +8,7 @@
 
 
 function output_and_log() {
-    echo $2 | tee -a $LOG_FILE_PATH >&$1
+    echo "[$(date)] $2" | tee -a $LOG_FILE_PATH >&$1
 }
 
 function check_for_root() {
