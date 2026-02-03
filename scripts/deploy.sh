@@ -5,5 +5,6 @@
 # version: 0.0.1
 # date: 2026-02-02
 ###################################### 
+set -o errexit
 
 cp -u ../site/* /var/www/devops-site/

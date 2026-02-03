@@ -5,8 +5,14 @@
 # version: 0.0.1
 # date: 2026-02-02
 ###################################### 
+set -o errexit
 
-echo "Creating webdeploy user and making a dir"
+if [[ $EUID != 0 ]]; then
+    echo >&2 "This script needs root privelegies to run"
+    exit 1
+fi
+
+echo "Creating webdeploy user and making dirs"
 
 useradd webdeploy &&\
     usermod -aG www-data webdeploy &&\
@@ -17,4 +23,4 @@ useradd webdeploy &&\
 
 echo "Installing nginx"
 
-which nginx || apt install -y nginx
+which nginx || apt install -y nginx && rm /etc/nginx/sites-enabled/default
