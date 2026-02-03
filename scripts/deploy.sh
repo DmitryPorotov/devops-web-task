@@ -7,4 +7,15 @@
 ###################################### 
 set -o errexit
 
-cp -u ../site/* /var/www/devops-site/
+LOG_FILE_PATH="./logs/deploy.log"
+
+. ./lib.sh
+
+function main() {
+    check_for_root
+    output_and_log 1 "Deploying new version."
+    cp -u ../site/* /var/www/devops-site/
+    chown -R webdeploy:www-data /var/www/devops-site/
+}
+
+main
