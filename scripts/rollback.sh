@@ -31,7 +31,7 @@ function copy_from_backup() {
         output_and_log 2 "Backup does not exist"
     fi
 
-    cp -u "../backup/$1" /var/www/devops-site/
+    cp -u "../backup/$1/*" /var/www/devops-site/
     chown -R webdeploy:www-data /var/www/devops-site/
 }
 
