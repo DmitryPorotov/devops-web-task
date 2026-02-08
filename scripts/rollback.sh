@@ -21,6 +21,7 @@ function main() {
 }
 
 function get_last_backup_name() {
+    cd ../backup
     dirname=$(ls -ldt */ | head -1 |  awk '{ print $9 }')
     echo "${dirname%?}"
 }
