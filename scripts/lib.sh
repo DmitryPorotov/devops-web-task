@@ -12,7 +12,12 @@ function output_and_log() {
         mkdir ../logs
     fi
 
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $2" | tee -a $LOG_FILE_PATH >&$1
+    level="INFO"
+    if [[ $1 -eq 2 ]]; then
+        level="ERROR"
+    fi
+
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $level $2" | tee -a "$LOG_FILE_PATH" >&"$1"
 }
 
 function check_for_root() {

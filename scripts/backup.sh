@@ -40,7 +40,7 @@ function zip_backups() {
                 echo "$b"
                 zip -r "${b%?}.zip" "$b" && rm -rf "$b"
             fi
-            i=$(( $i + 1 ))
+            i=$(( i + 1 ))
         done  
     fi
 }

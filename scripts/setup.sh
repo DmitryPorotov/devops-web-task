@@ -6,11 +6,12 @@
 # date: 2026-02-02
 ###################################### 
 set -o errexit
+set -o pipefail
+set -o nounset
 
-if [[ $EUID != 0 ]]; then
-    echo >&2 "This script needs root privelegies to run"
-    exit 1
-fi
+. ./lib.sh
+
+check_for_root
 
 echo "Creating webdeploy user and making dirs"
 

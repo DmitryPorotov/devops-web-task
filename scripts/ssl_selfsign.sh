@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 ######################################
 # created by: Dmitry Porotov
-# purpose: create and deploy self signed certifecate
+# purpose: create and deploy self signed certificate
 # version: 0.0.1
 # date: 2026-02-02
 ###################################### 
 set -o errexit
+set -o pipefail
+set -o nounset
 
-if [[ $EUID != 0 ]]; then
-    echo >&2 "This script needs root privelegies to run"
-    exit 1
-fi
+LOG_FILE_PATH="../logs/selfsigned-cert.log"
 
-openssl req -x509 -nodes -newkey rsa:4096 \
+. ./lib.sh
+
+function main() {
+    check_for_root
+    generate_cert
+}
+
+function generate_cert() {
+    openssl req -x509 -nodes -newkey rsa:4096 \
 -keyout /etc/nginx/ssl/certs/devops-web.key \
 -out /etc/nginx/ssl/certs/devops-web.crt \
--days 365 -subj "/CN=dev-ops-site"
+-days 365 -subj "/CN=dev-ops-site" && output_and_log 1 "Created and deployed certificate"
+}
+
+main
+
